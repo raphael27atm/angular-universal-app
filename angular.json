@@ -149,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "my-universal-app"
+  "defaultProject": "my-universal-app",
+  "cli": {
+    "analytics": "1a783440-2b28-485c-85ea-b30e6eff244b"
+  }
 }
