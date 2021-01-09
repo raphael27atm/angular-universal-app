@@ -24,11 +24,6 @@ async function retrieveFromDb(
     db.collection(collectionName)
       .aggregate([
         { $match: query },
-        {
-          $addFields: {
-            id: { $toString: '$_id' },
-          },
-        },
         { $project: project },
       ])
       .toArray((err, objects) => {
