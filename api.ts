@@ -14,9 +14,9 @@ dbClient.then(() => {
 });
 
 async function retrieveFromDb(
-  collectionName,
-  project = {},
-  query = {}
+  collectionName: string,
+  project: any,
+  query: any
 ): Promise<any[]> {
   project['_id'] = 0;
   const db = await dbClient;
@@ -41,7 +41,7 @@ api.get('/products', async (req, res) => {
   console.log('GET products');
   const products = await retrieveFromDb('products', {
     description: 0,
-  });
+  },{});
   res.send(products);
 });
 
