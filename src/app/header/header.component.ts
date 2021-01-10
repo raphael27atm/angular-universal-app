@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +12,28 @@ import { Component, OnInit } from '@angular/core';
           class="navbar-brand d-flex align-items-center"
           ><strong>Welcome to the (work)shop!</strong></a
         >
+        <a
+          *ngIf="isLoggedIn$ | async"
+          routerLink="favorites"
+          class="btn btn-secondary my-2"
+          >my favorite products</a
+        >
+        <a
+          *ngIf="!(isLoggedIn$ | async)"
+          routerLink="login"
+          class="btn btn-secondary my-2"
+          >login</a
+        >
       </div>
     </div>
   `,
-  styles: [
-  ]
+  styles: [],
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  public isLoggedIn$: Observable<boolean> | undefined;
+  constructor(private us: UserService) {}
 
   ngOnInit(): void {
+    this.isLoggedIn$ = this.us.isLoggedIn();
   }
-
 }

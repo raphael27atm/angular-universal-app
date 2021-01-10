@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:backend": "tsc --project tsconfig.backend.json"
+    "build:backend": "tsc --project tsconfig.backend.json",
+    "front": "ng serve",
+    "front:build": "ng build"
   },
   "private": true,
   "dependencies": {

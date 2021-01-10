@@ -19,14 +19,13 @@ import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private API_URL = 'http://localhost:3000/api';
+  private API_URL = '/api';
 
-  private currentUser$: Subject<User> = new BehaviorSubject(
-    null
-  );
+  private currentUser$: Subject<User  | null> = new BehaviorSubject<User | null>(null);
+
   private redirectUrl: string = '/';
   private redirectParams: any = null;
 
@@ -46,7 +45,7 @@ export class UserService {
   public isLoggedIn(): Observable<boolean> {
     return this.currentUser$.pipe(
       map((user) => user != null)
-    )
+    );
   }
 
   public setRedirectUrl(url: string) {
@@ -114,14 +113,14 @@ export class UserService {
     );
   }
 
-  private checkCookie(): Observable<void> {
+  private checkCookie(): Observable<void | any> {
     return this.http
       .get(`${this.API_URL}/isLoggedIn`, {
         withCredentials: true,
       })
       .pipe(
         catchError(() => of(null)),
-        tap((user) => this.currentUser$.next(user))
+        tap((user) => this.currentUser$.next())
       );
   }
 }

@@ -21,7 +21,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
